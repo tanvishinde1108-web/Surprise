@@ -1,0 +1,172 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifdef _WIN32
+    #include <windows.h>
+    void sleep_ms(int milliseconds) { Sleep(milliseconds); }
+    void clear_screen() { system("cls"); }
+#else
+    #include <unistd.h>
+    void sleep_ms(int milliseconds) { usleep(milliseconds * 1000); }
+    void clear_screen() { system("clear"); }
+#endif
+
+// Function Declarations
+void print_slow(const char *text, int delay_ms);
+void show_header();
+void loading_animation();
+void relationship_quiz();
+void love_calculator();
+void reveal_gift_box();
+void final_letter();
+
+int main() {
+    clear_screen();
+    
+    // Step 1: Animated Entrance
+    loading_animation();
+    clear_screen();
+    
+    show_header();
+    printf("\n  Welcome to your personalized surprise program!\n");
+    printf("  Press ENTER to begin your journey...");
+    getchar();
+    
+    // Step 2: The Quiz
+    relationship_quiz();
+    
+    // Step 3: Interactive Love Calculator
+    love_calculator();
+    
+    // Step 4: The Big Reveal
+    reveal_gift_box();
+    
+    // Step 5: Final Heartfelt Message
+    final_letter();
+    
+    return 0;
+}
+
+// Prints text char-by-char for a typewriter effect
+void print_slow(const char *text, int delay_ms) {
+    while (*text) {
+        putchar(*text++);
+        fflush(stdout);
+        sleep_ms(delay_ms);
+    }
+}
+
+void show_header() {
+    printf("===================================================\n");
+    printf("         <3 VIRTUAL SURPRISE FOR MY BF <3         \n");
+    printf("===================================================\n");
+}
+
+void loading_animation() {
+    printf("\n\n\n\t\tBooting up love module");
+    for (int i = 0; i < 5; i++) {
+        printf(".");
+        fflush(stdout);
+        sleep_ms(500);
+    }
+    printf("\n\t\tAccess Granted! Unlocking surprise...\n");
+    sleep_ms(1200);
+}
+
+void relationship_quiz() {
+    clear_screen();
+    show_header();
+    printf("\n[ LEVEL 1: The Loyalty & Memory Test ]\n\n");
+    
+    int score = 0;
+    int answer;
+    
+    // Question 1
+    printf("1. Who is the absolute luckiest guy in the world?\n");
+    printf("   (1) You\n   (2) Also you\n   (3) Still you\n");
+    printf("   Your Choice: ");
+    scanf("%d", &answer);
+    score++;
+    
+    // Question 2
+    printf("\n2. What happens when I say 'I miss you'?\n");
+    printf("   (1) You send a sweet message\n   (2) You teleport to me\n   (3) You smile like a dork\n");
+    printf("   Your Choice: ");
+    scanf("%d", &answer);
+    score++;
+
+    // Question 3
+    printf("\n3. How much do I love you?\n");
+    printf("   (1) To the moon and back\n   (2) More than words can say\n   (3) Infinite x 1000\n");
+    printf("   Your Choice: ");
+    scanf("%d", &answer);
+    score++;
+    
+    while (getchar() != '\n'); // Clear input buffer
+    
+    printf("\nScore: %d/3! Perfect score! You passed the test!\n", score);
+    printf("Press ENTER to continue to the next stage...");
+    getchar();
+}
+
+void love_calculator() {
+    clear_screen();
+    show_header();
+    printf("\n[ LEVEL 2: Calibrating Love Energy Meter ]\n\n");
+    
+    printf("Analyzing connection stability...\n");
+    sleep_ms(1000);
+    
+    for (int i = 0; i <= 100; i += 10) {
+        printf("\r[");
+        int pos = i / 5;
+        for (int j = 0; j < 20; j++) {
+            if (j < pos) printf("=");
+            else if (j == pos) printf(">");
+            else printf(" ");
+        }
+        printf("] %d%%", i);
+        fflush(stdout);
+        sleep_ms(200);
+    }
+    
+    printf("\n\nERROR: Love overflow detected! System capacity exceeded (1000000000%%)!\n");
+    printf("\nPress ENTER to open your gift box...");
+    getchar();
+}
+
+void reveal_gift_box() {
+    clear_screen();
+    show_header();
+    printf("\n     Opening your virtual present...\n\n");
+    sleep_ms(1000);
+
+    // Gift Box ASCII Art
+    printf("            \t  _________________\n");
+    printf("            \t /                /|\n");
+    printf("            \t/________________/ |\n");
+    printf("            \t|  ___     ___   | |\n");
+    printf("            \t| |  _ \\ /  _ |  | |\n");
+    printf("            \t| | |_) |  |_) | | |\n");
+    printf("            \t| |  _ <|  _ <   | |\n");
+    printf("            \t| |_| \\_\\_| \\_\\  | /\n");
+    printf("            \t|________________|/\n\n");
+    
+    sleep_ms(1500);
+}
+
+void final_letter() {
+    printf("===================================================\n");
+    print_slow("  Dear Handsome,\n\n", 50);
+    print_slow("  I wanted to build something unique just for you!\n", 40);
+    print_slow("  Thank you for being my favorite person, my best friend,\n", 40);
+    print_slow("  and the sweetest part of my everyday life.\n\n", 40);
+    print_slow("  No matter how many lines of code I write, I could\n", 40);
+    print_slow("  never fully measure how much you mean to me.\n\n", 40);
+    print_slow("  I love you endlessly! <3\n", 60);
+    printf("===================================================\n\n");
+    
+    printf("Program finished. Press ENTER to exit.");
+    getchar();
+}
